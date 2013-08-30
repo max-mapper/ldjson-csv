@@ -1,0 +1,27 @@
+{
+  "name": "ldjson-csv",
+  "version": "0.0.1",
+  "bin": {
+    "ldjson-csv": "cli.js"
+  },
+  "description": "streaming csv to line delimited json parser",
+  "main": "index.js",
+  "author": "max ogden",
+  "scripts": {
+    "test": "cat npr-accessible-playgrounds.csv | node cli.js"
+  },
+  "license": "BSD",
+  "dependencies": {
+    "rfc-csv": "~0.2.0",
+    "ldjson-stream": "0.0.1",
+    "stream-combiner": "0.0.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/maxogden/ldjson-csv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maxogden/ldjson-csv/issues"
+  }
+}
