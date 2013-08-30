@@ -14,7 +14,8 @@
   "dependencies": {
     "rfc-csv": "~0.2.0",
     "ldjson-stream": "0.0.1",
-    "stream-combiner": "0.0.2"
+    "stream-combiner": "0.0.2",
+    "through": "~2.3.4"
   },
   "devDependencies": {},
   "repository": {
