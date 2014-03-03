@@ -1,11 +1,11 @@
 var csv = require('rfc-csv')
-var through = require('through')
+var through = require('through2')
 var combine = require('stream-combiner')
 var ldj = require('ldjson-stream')
 
 module.exports = function() {
   var parser = csv(true)
-  var transform = through(convert)
+  var transform = through.obj(convert)
   var headers
 
   parser.once('header', function (header) {
@@ -18,10 +18,12 @@ module.exports = function() {
     ldj.serialize()
   )
   
-  function convert(row) {
+  function convert(row, _, next) {
     var obj = rowToObject(row)
-    if (!obj) return
-    this.queue(obj)
+    if (obj) {
+      this.push(obj)
+    }
+    next()
   }
 
   function rowToObject(row) {
