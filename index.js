@@ -3,20 +3,21 @@ var through = require('through2')
 var combine = require('stream-combiner')
 var ldj = require('ldjson-stream')
 
-module.exports = function() {
+module.exports = function(opts) {
   var parser = csv(true)
   var transform = through.obj(convert)
   var headers
+  var combineSteps = [parser, transform]
 
   parser.once('header', function (header) {
     headers = header
   })
+
+  if (opts && opts.stringify) {
+    combineSteps.push(ldj.serialize())
+  }
   
-  return combine(
-    parser,
-    transform,
-    ldj.serialize()
-  )
+  return combine.apply(null, combineSteps)
   
   function convert(row, _, next) {
     var obj = rowToObject(row)
