@@ -3,5 +3,5 @@
 var transform = require('./')
 
 process.stdin
-  .pipe(transform())
+  .pipe(transform({ stringify: true }))
   .pipe(process.stdout)
