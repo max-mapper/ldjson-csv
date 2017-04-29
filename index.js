@@ -3,12 +3,12 @@ var through = require('through2')
 var combine = require('stream-combiner')
 var ldj = require('ldjson-stream')
 
-module.exports = function() {
+module.exports = () => {
   var parser = csv(true)
   var transform = through.obj(convert)
   var headers
 
-  parser.once('header', function (header) {
+  parser.once('header', header => {
     headers = header
   })
   
